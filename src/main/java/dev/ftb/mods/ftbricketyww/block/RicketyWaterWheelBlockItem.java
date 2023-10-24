@@ -38,7 +38,7 @@ public class RicketyWaterWheelBlockItem extends BlockItem {
         super.appendHoverText(stack, level, list, flag);
 
         int durabilityPct = (int)(getDurability(stack) * 100);
-        list.add(Component.translatable("create.ricketyww.goggles.durability").withStyle(ChatFormatting.GRAY)
+        list.add(Component.translatable("create.ftbricketyww.goggles.durability").withStyle(ChatFormatting.GRAY)
                 .append(Component.literal(durabilityPct + "%").withStyle(ChatFormatting.AQUA)));
     }
 
