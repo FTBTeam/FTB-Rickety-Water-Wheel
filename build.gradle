@@ -27,6 +27,8 @@ loom {
 }
 
 repositories {
+    mavenLocal()
+
     maven {
         url "https://maven.tterrag.com/"
         content {
@@ -88,7 +90,15 @@ jar {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            from components.java
+            artifactId = project.archivesBaseName
+            version ftbPublishing.mavenVersion
+            // add all the jars that should be included when publishing to maven
+            artifact(remapJar) {
+                builtBy remapJar
+            }
+            artifact(sourcesJar) {
+                builtBy remapSourcesJar
+            }
         }
     }
 
