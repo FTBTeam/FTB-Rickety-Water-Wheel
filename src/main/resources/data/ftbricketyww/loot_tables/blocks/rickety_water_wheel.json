@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "ops": [
+                {
+                  "op": "replace",
+                  "source": "Durability",
+                  "target": "BlockEntityTag.Durability"
+                }
+              ],
+              "source": "block_entity"
+            }
+          ],
+          "name": "ftbricketyww:rickety_water_wheel"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}
