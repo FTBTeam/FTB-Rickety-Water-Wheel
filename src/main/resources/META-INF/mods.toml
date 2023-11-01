@@ -28,7 +28,7 @@ displayName = "Rickety Water Wheel"
 # authors="Me!" #optional
 # A multi-line description for your mod. This has no minimum length, but it *is* required!
 description = '''
-An equivalent of Create's small water wheel, but out over time as it's used and will eventually break and need to be replaced.
+An equivalent of Create's small water wheel, but wears out over time as it's used and will eventually break and need to be replaced.
 '''
 
 # An (optional) dependency for your mod. Though technically not required,
