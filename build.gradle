@@ -1,6 +1,7 @@
 plugins {
-    id "dev.architectury.loom" version "1.1-SNAPSHOT"
+    id "dev.architectury.loom" version "1.5-SNAPSHOT"
     id "maven-publish"
+    id "me.modmuss50.mod-publish-plugin" version "0.4.5"
 }
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
@@ -122,5 +123,29 @@ publishing {
                 }
             }
         }
+    }
+}
+
+publishMods {
+    dryRun = providers.environmentVariable("CURSEFORGE_KEY").getOrNull() == null
+    changelog = providers.environmentVariable("CHANGELOG").getOrElse("No changelog provided")
+    version = "${mod_version}"
+
+    // TODO: Migrate to something else
+    def tag = providers.environmentVariable("TAG").getOrElse("release")
+    type = tag == "release" ? STABLE : (tag == "beta" ? BETA : ALPHA)
+
+    curseforge {
+        accessToken = providers.environmentVariable("CURSEFORGE_KEY")
+        projectId = "997271"
+
+        displayName = "[FORGE][${minecraft_version}] FTB Rickety Water Wheel ${mod_version}"
+        modLoaders.add("forge")
+        minecraftVersions.add("${minecraft_version}")
+
+        file = project.provider { project.tasks.remapJar }.flatMap { it.archiveFile }
+
+        requires {slug = 'create' }
+        requires {slug = 'flywheel' }
     }
 }
